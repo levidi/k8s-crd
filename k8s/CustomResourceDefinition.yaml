@@ -8,7 +8,7 @@ spec:
     kind: Bucket
     plural: buckets
     shortNames:
-    - bk
+      - bk
   group: levi.com
   versions:
     - name: v1

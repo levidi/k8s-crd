@@ -13,6 +13,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
+	aws "levi.com/bucket-operator/services"
 	"levi.com/bucket-operator/types"
 )
 
@@ -64,6 +65,8 @@ func GetInformerBucket(config *rest.Config) cache.SharedIndexInformer {
 			fmt.Printf("Bucket added: %s\n", customResource.Name)
 			// Handle logic for added bucket
 			fmt.Printf("BucketName: %s, Region: %s\n", customResource.Spec.BucketName, customResource.Spec.Region)
+
+			aws.CreateBucket(customResource)
 		},
 		UpdateFunc: func(oldObj, newObj interface{}) {
 			unstructuredObj := newObj.(*unstructured.Unstructured)
@@ -87,6 +90,7 @@ func GetInformerBucket(config *rest.Config) cache.SharedIndexInformer {
 			}
 			fmt.Printf("Bucket deleted: %s\n", customResource.Name)
 			// Handle logic for deleted bucket
+			aws.DeleteBucket(customResource)
 		},
 	})
 	return bucketInformer

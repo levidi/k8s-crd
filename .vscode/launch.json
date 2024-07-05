@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch K8S-CRD",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "PATH_KUBE_CONFIG": "${env:HOME}/.kube/config",
+                "AWS_PROFILE_NAME": "local",
+                "AWS_CONFIG_ENDPOINT": "http://localhost:4566",
+                "AWS_CONFIG_ACCESS_KEY_ID": "localstack-key-id",
+                "AWS_CONFIG_SECRET_ACCESS_KEY": "locastack-access-key"
+            }
+        }
+    ]
+}

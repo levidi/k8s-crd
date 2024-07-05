@@ -4,4 +4,4 @@ metadata:
   name: example-bucket
 spec:
   bucketName: my-bucket
-  region: us-west-1
+  region: us-east-1

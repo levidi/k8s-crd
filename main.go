@@ -15,9 +15,13 @@ import (
 
 func main() {
 	var kubeconfig string
-	flag.StringVar(&kubeconfig, "kubeconfig", "/home/leviditomazzomenezes/.kube/config", "Path to kubeconfig file")
+
+	path, _ := os.LookupEnv("PATH_KUBE_CONFIG")
+
+	flag.StringVar(&kubeconfig, "kubeconfig", path, "Path to kubeconfig file")
 	flag.Parse()
 
+	print(kubeconfig)
 	stopCh := SetupSignalHandler() // Set up signals so we handle the first shutdown signal gracefully
 
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
