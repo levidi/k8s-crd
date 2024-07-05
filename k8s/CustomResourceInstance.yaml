@@ -1,0 +1,7 @@
+apiVersion: levi.com/v1
+kind: Bucket
+metadata:
+  name: example-bucket
+spec:
+  bucketName: my-bucket
+  region: us-west-1
